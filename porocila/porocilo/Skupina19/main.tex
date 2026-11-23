@@ -151,7 +151,6 @@ Premer pike & \SI{5}{\nano\metre} \\
 
 S periodo smo sorazmerno spreminjali še strmino ure, periodo vhodov in skupni čas simulacije. Strmino, ki določa, kako hitro celice preklapljajo, smo nastavili na četrtino periode (\SIlist[list-units=single]{1;10;100}{\pico\second}). Perioda vhodov je enaka periodi ure, tako da se vhodi spremenijo enkrat na periodo ure in po vrsti zavzamejo vseh osem kombinacij $(A, B, C_\mathrm{in})$. Ena urina perioda tako ustreza enemu seštevanju. Skupni čas simulacije je 12,5 urinih period (\SIlist[list-units=single]{0.05;0.5;5}{\nano\second}), da povprečje pri vseh periodah zajame enako število ciklov.
 
-
 Za disipirano energijo smo uporabili vrednost \textit{Avg\_Ebath}, ki jo izpiše QCADesigner-E: povprečno energijo, oddano v okolje v eni urini periodi, sešteto po vseh celicah, razen vhodnih, konstantnih in tistih, označenih z \textit{ignore\_energy}.
 
 \subsection{Zasnova poskusov}
@@ -205,7 +204,7 @@ Obe izvedbi smo izdelali s klasičnimi majoritetnimi vrati in z vrati Torresa in
 
 Za primerjavo z objavljenimi zasnovami smo po slikah iz člankov ponovno izdelali še dve vezji, ki ne sledita zgradbi s konvencionalnimi majoritetnimi vrati (slika~\ref{g19:fig:vezja-nemaj}).
 
-Ahmad in sod.~\cite{g19:ahmad2018} predlagajo dvoje novih reverzibilnih vrat (3$\times$3-NRG in modificirana Feynmanova vrata) in iz njih sestavijo enoplastni logično reverzibilni seštevalnik-odštevalnik.
+Ahmad in sod.~\cite{g19:ahmad2018} predlagajo dvoje novih reverzibilnih vrat (3$\times$3-NRG in modificirana Feynmanova vrata) in iz njih sestavijo enoplastni logično reverzibilni seštevalnik-odštevalnik. Vezje ima poleg treh vhodov še dve konstanti, ki ju lahko obravnavamo kot dodatna vhoda. Poleg vsote in prenosa vrne še izposojo odštevanja in dva dodatna izhoda, tako da vezje tvori bijektivno preslikavo s $5$ vhodi in $5$ izhodi.
 
 Seyedi in Jafari Navimipour~\cite{g19:seyedi2022} uporabita nova trivhodna majoritetna vrata, katerih vhodi so v različnih plasteh, ter vrata TIEO (\textit{angl. Three input exclusive-or gate}), in iz njih sestavita ireverzibilni seštevalnik v treh plasteh.
 
@@ -222,7 +221,7 @@ Seyedi in Jafari Navimipour~\cite{g19:seyedi2022} uporabita nova trivhodna major
 
 Vse štiri postavitve smo načrtovali ad hoc po logičnih shemah. Urina območja smo dodelili v navpičnih pasovih, tako da signal teče od leve proti desni in vsak pas pripada eni urini coni. Uporabili smo triplastno križanje, kjer se signal po navpičnih celicah dvigne v drugo plast celic in se za križanjem vrne v glavno plast.
 
-Pri vratih Torresa in sod. smo razporeditev con povzeli po njihovih slikah: vrata so v svoji coni, dodatni izhodi pa so zaključeni s kratkimi vodili. Po njihovem vzorcu smo pri vseh šestih vezjih z \textit{ignore\_energy} označili celice vhodnih vodil do prvih vrat in celice izhodnih vodil od zadnjih vrat do izhodov, pri vezjih s Torresovimi vrati pa tudi celice dodatnih izhodov. Energija teh celic zato ni vključena v rezultate. Vsa vezja smo simulirali pri periodah \SIlist{4;40;400}{\pico\second}.
+Pri vratih Torresa in sod. smo razporeditev con povzeli po njihovih slikah: vrata so v svoji coni, dodatni izhodi pa so zaključeni s kratkimi vodili. Po njihovem vzorcu smo pri vseh šestih vezjih z \textit{ignore\_energy} označili celice vhodnih vodil do prvih vrat in celice izhodnih vodil od zadnjih vrat do izhodov, pri vezjih s Torresovimi vrati pa tudi celice dodatnih izhodov. Energija teh celic zato ni vključena v rezultate. Vsa vezja smo simulirali pri periodah \SIlist{4;40;400}{\pico\second}. Vse postavitve in rezultati simulacij so na voljo v repozitoriju\footnote{\url{https://github.com/denbal2292/qca-full-adder-rev}}.
 
 \subsection{Metrike}
 \label{g19:sec:metrike}
@@ -253,12 +252,12 @@ Vezje & {Celice} & {Štete} & {Površina} & {Križanja} & {Zakasnitev} & {Dodatn
  & & {celice} & {[\si{\micro\metre\squared}]} & & {[cikli]} & {izhodi} & \\
 \hline
 Pudi (klasična) & 153 & 131 & 0.202 & 2 & 1.75 & 0 & 0.95 \\
-Pudi (Torres)   & 171 & 145 & 0.189 & 4 & 1.75 & 5 & 0.95 \\
+Pudi (Torres)   & 171 & 145 & 0.189 & 2 & 1.75 & 5 & 0.95 \\
 Wang (klasična) & 157 & 141 & 0.196 & 3 & 1.50 & 0 & 0.95 \\
 Wang (Torres)   & 187 & 157 & 0.196 & 3 & 1.50 & 7 & 0.95 \\
 \hline
 Ahmad in sod.   & 121 & 103 & 0.143 & 0 & 1.25 & 3 & 0.95 \\
-Seyedi in J.~N. &  18 &  12 & 0.014 & 0\rlap{$^\ast$} & 0.50 & 0 & 0.71 \\
+Seyedi in J.~N. &  18 &  12 & 0.014 & 0\rlap{$^\ast$} & 0.50 & 0 & 0.92 \\
 \hline
 \multicolumn{8}{l}{\footnotesize $^\ast$ tri plasti celic brez križanj, površina je površina ene plasti.}
 \end{tabular}
@@ -313,8 +312,8 @@ Seyedi in J.~N.~\cite{g19:seyedi2022} & 0.76 & 0.64 & 0.62  & 51.75 & 10.4 \\
 \section{Razprava}
 \label{g19:sec:razprava}
 
-Pričakovali smo, da bo pri kratki urini periodi disipacija naraščala z velikostjo vezja in da reverzibilnost ne bo prinesla bistvene prednosti. Rezultati to potrjujejo: pri \SI{4}{ps} večja vezja disipirajo od \num{2.9} do \SI{4.5}{\milli\electronvolt}, desetkrat manjše vezje Seyedija in J.~N. pa približno petkrat manj. Torresova vrata v tem območju prinesejo le od \num{16} do \SI{26}{\percent} prihranka.
- 
+Pričakovali smo, da bo pri kratki urini periodi disipacija naraščala z velikostjo vezja in da reverzibilnost ne bo prinesla bistvene prednosti. Rezultati to potrjujejo le delno. Pri \SI{4}{ps} desetkrat manjše vezje Seyedija in J.~N. disipira približno petkrat manj od ostalih, ki disipirajo od \num{2.9} do \SI{4.5}{\milli\electronvolt}, med večjimi vezji pa velikost ni edini dejavnik: izvedbi z vrati Torresa in sod. imata največ celic, a disipirata od \num{16} do \SI{26}{\percent} manj kot enaka zgradba s klasičnimi vrati. Reverzibilna vrata tako tudi pri hitri uri prinesejo majhen, a opazen prihranek energije.
+
 Njihova prednost postane izrazita šele pri počasnejši uri. Med \SI{40}{ps} in \SI{400}{ps} se disipacija izvedb s Torresovimi vrati zmanjša za \num{73} do \SI{79}{\percent}, pri ostalih pa le za \num{3} do \SI{19}{\percent}, saj še vedno plačujejo energijsko ceno brisanja informacije~\cite{landauer1961,g19:torres2019}. Pri \SI{400}{ps} disipirata izvedbi Pudijevega in Wangovega seštevalnika s temi vrati \num{10}-krat oziroma \num{20}-krat manj kot ustrezni izvedbi s klasičnimi vrati. Kljub temu hipoteze, da bo celoten seštevalnik padel pod Landauerjevo limito, nismo potrdili. Najboljši rezultat doseže Wangova zasnova z \num{1.3}\,$kT\ln 2$ na seštevanje.
 
 Tudi zgolj logična reverzibilnost ne zagotavlja bistveno manjše disipacije. Ahmadovo vezje~\cite{g19:ahmad2018} se med \SI{4}{ps} in \SI{400}{ps} izboljša le za faktor \num{2}, pri najdaljši periodi pa disipira toliko kot Wangova izvedba s klasičnimi vrati. Razlog je v ireverzibilnosti njegovih notranjih vrat. Čeprav Torresova vrata zahtevajo od \num{12} do \SI{20}{\percent} več celic in pet oziroma sedem dodatnih izhodov, pričakovanega povečanja zakasnitve nismo opazili.
